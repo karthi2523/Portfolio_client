@@ -1,0 +1,46 @@
+.navbar {
+  background: white;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.navLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navLinks .nav-link {
+  font-weight: 500;
+  color: black;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.navLinks .nav-link:hover {
+  color: #6c63ff;
+  text-decoration: none;
+}
+
+.contactBtn {
+  font-size: 14px;
+  padding: 6px 12px;
+}
+
+
+@media screen and (min-width: 768px) {
+  .navLinks {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .navLinks .nav-link {
+    font-size: 16px;
+  }
+
+  .contactBtn {
+    font-size: 16px;
+    padding: 8px 20px;
+  }
+}

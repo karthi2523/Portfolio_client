@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Funnel Display', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.scroll-offset {
+  scroll-margin-top: 80px; 
+}

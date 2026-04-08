@@ -1,0 +1,235 @@
+* {
+  font-family: 'Funnel Display', sans-serif;
+}
+
+.header-section {
+  margin-top: 80px;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.fade-letter {
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.fade-letter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.highlighted-name {
+  color: #ff6600;
+  display: inline-block;
+}
+
+.header-left {
+  padding-right: 30px;
+}
+@media (max-width: 992px) {
+  .header-left {
+    padding: 0;
+    text-align: center;
+  }
+}
+
+.cartoon-wrapper {
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 20px;
+  background: radial-gradient(circle at top, #fff8f0, #ffe5cc);
+  padding: 15px;
+}
+@media (max-width: 576px) {
+  .cartoon-wrapper {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+.no-hover:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+  border-color: black !important;
+}
+
+
+.cartoon-wrapper {
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 10px;
+  position: relative;
+}
+
+.avatar-bg {
+  position: relative;
+  z-index: 2;
+}
+
+.cartoon-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(270deg, #ff6600, #ffcc80, #ff6600);
+  background-size: 600% 600%;
+  animation: gradientMove 8s ease infinite;
+  z-index: 1;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+
+.portfolio-container {
+  border: 3px solid transparent;
+  border-radius: 20px;
+  padding: 20px;
+  background-clip: padding-box;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+
+.portfolio-container::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ff6600, #ffcc00, #00c3ff, #8e2de2);
+  background-size: 300% 300%;
+  animation: borderGlow 8s ease infinite;
+  z-index: -1;
+}
+
+.portfolio-container:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .portfolio-container {
+    border-radius: 15px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-container {
+    border-radius: 10px;
+    padding: 10px;
+  }
+}
+
+@keyframes borderGlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.profile-card {
+  width: 350px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 20px;
+  padding: 15px;
+  position: relative;
+}
+
+.code-editor {
+  background: #1e1e1e;
+  color: #dcdcdc;
+  font-family: monospace;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.editor-header {
+  background: #2d2d2d;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.editor-title {
+  margin-left: auto;
+  color: #ccc;
+  font-size: 0.85rem;
+}
+
+.code-content {
+  padding: 15px;
+  font-size: 0.85rem;
+  white-space: pre-wrap;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1.5rem;
+}
+
+.social-icons a {
+  color: #333;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ff6600;
+}
+
+.blinking-cursor {
+  display: inline-block;
+  animation: blink 0.8s infinite;
+}
+
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
+@media (max-width: 992px) {
+  .profile-card {
+    margin-top: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-card {
+    margin-top: 50px; 
+  }
+}
+
+.cartoon-wrapper::before {
+  z-index: -1; /* instead of 1 */
+}
+
+.portfolio-container::before {
+  z-index: -1; /* instead of default */
+}
+
+button, .btn {
+  cursor: pointer !important;
+  position: relative;
+  z-index: 1000 !important;
+}
