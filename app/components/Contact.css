@@ -81,3 +81,29 @@
 .btn-dark:hover img {
   transform: translateX(5px);
 }
+
+@media (max-width: 768px) {
+  .contact-section {
+    padding: 40px 15px;
+  }
+  
+  .main-heading {
+    font-size: 2rem;
+  }
+  
+  .sub-text {
+    font-size: 0.95rem;
+    padding: 0 10px;
+  }
+  
+  .custom-input, .custom-textarea {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .btn-dark {
+    width: 100%;
+    justify-content: center;
+  }
+}

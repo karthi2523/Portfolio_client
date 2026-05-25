@@ -1,8 +1,11 @@
+'use client';
 import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { assets } from '@/assets/assets';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { motion } from 'framer-motion';
+import { useDarkMode } from './DarkModeContext';
 import './Services.css';
 
 const skills = [
@@ -19,82 +22,125 @@ const skills = [
 ];
 
 const tools = [
-  assets.vscode, assets.git, assets.github, assets.postman
+  { name: 'VS Code', icon: assets.vscode },
+  { name: 'Git', icon: assets.git },
+  { name: 'GitHub', icon: assets.github },
+  { name: 'Postman', icon: assets.postman }
 ];
 
 const Services = () => {
+  const { darkMode } = useDarkMode();
+
   useEffect(() => {
-    AOS.init({ duration: 800, offset: 100, once: true });
+    AOS.init({
+      duration: 1000, 
+      offset: 80,
+      once: true,
+      easing: 'ease-in-out'
+    });
   }, []);
 
-useEffect(() => {
-  AOS.init({
-    duration: 1000, 
-    offset: 80,
-    once: true,
-    easing: 'ease-in-out'
-  });
-}, []);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }
+    }
+  };
 
   return (
-    <>
-      <h2  className="skills-heading text-center" data-aos="fade-up">
-        Skills
-      </h2>
-      <section className="skills-section container py-5">
-        <div className="row g-3 justify-content-center">
-          {skills.map((skill, idx) => (
-            <div key={idx} className="col-6 col-sm-4 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay={idx * 50}>
-              <div 
-                className="skill-box text-center shadow-sm p-3 rounded bg-white"
-                style={{ transition: 'all 0.3s ease', cursor: 'default' }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-5px)';
-                  e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 .125rem .25rem rgba(0,0,0,.075)';
-                }}
-              >
-                <Image src={skill.icon} alt={skill.name} width={40} height={40} />
-                <p className="mt-2 text-dark small fw-medium mb-0">{skill.name}</p>
-              </div>
-            </div>
-          ))}
+    <section className={`skills-section-wrapper py-5 ${darkMode ? 'dark-mode' : ''}`}>
+      <div className="container">
+        
+        {/* Skills Heading */}
+        <div className="text-center mb-5" data-aos="fade-down">
+          <h2 className="section-title-premium">Skills & Expertise</h2>
+          <p className="section-subtitle-premium">Technologies and languages I work with to build responsive, full-stack applications</p>
         </div>
 
-       <h3 className="tools-heading text-center mt-5" data-aos="fade-up">
-  Tools I Use
-</h3>
-<div className="row g-3 justify-content-center mt-3">
-  {tools.map((icon, idx) => (
-    <div 
-      key={idx} 
-      className="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-1" 
-      data-aos="flip-up"
-      data-aos-delay={idx * 100}
-    >
-      <div 
-        className="tool-box shadow-sm p-3 rounded bg-white text-center"
-        style={{ transition: 'all 0.3s ease' }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.transform = 'rotate(5deg) scale(1.1)';
-          e.currentTarget.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.transform = 'rotate(0deg) scale(1)';
-          e.currentTarget.style.boxShadow = '0 .125rem .25rem rgba(0,0,0,.075)';
-        }}
-      >
-        <Image src={icon} alt={`Tool ${idx}`} width={30} height={30} style={{ objectFit: 'contain' }} />
-      </div>
-    </div>
-  ))}
-</div>
+        {/* Skills Grid */}
+        <motion.div 
+          className="row g-4 justify-content-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {skills.map((skill, idx) => (
+            <motion.div 
+              key={idx} 
+              className="col-6 col-sm-4 col-md-3 col-lg-2"
+              variants={itemVariants}
+            >
+              <div className="premium-skill-card text-center">
+                <div className="skill-icon-wrapper">
+                  <Image 
+                    src={skill.icon} 
+                    alt={skill.name} 
+                    width={48} 
+                    height={48} 
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+                <p className="skill-name">{skill.name}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
 
-      </section>
-    </>
+        {/* Tools Section */}
+        <div className="text-center mt-5 pt-4 mb-4" data-aos="fade-up">
+          <h3 className="section-title-premium-sub">Tools & Workflow</h3>
+          <p className="section-subtitle-premium">The platforms and systems I use for development, version control, and APIs</p>
+        </div>
+
+        {/* Tools Grid */}
+        <motion.div 
+          className="row g-4 justify-content-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          {tools.map((tool, idx) => (
+            <motion.div 
+              key={idx} 
+              className="col-6 col-sm-4 col-md-3 col-lg-2"
+              variants={itemVariants}
+            >
+              <div className="premium-skill-card text-center">
+                <div className="skill-icon-wrapper">
+                  <Image 
+                    src={tool.icon} 
+                    alt={tool.name} 
+                    width={48} 
+                    height={48} 
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+                <p className="skill-name">{tool.name}</p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+      </div>
+    </section>
   );
 };
 

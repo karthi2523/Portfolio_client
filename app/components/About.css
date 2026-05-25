@@ -29,78 +29,8 @@
 
 .icon-title h5 {
   font-size: 1.1rem;
+  font-weight: 600;
   color: grey;
-  font-weight: 600;
-}
-
-.icon-title img {
-  width: 32px;
-  height: 32px;
-  filter: brightness(0) saturate(100%); 
-}
-
-
-@media (max-width: 992px) {
-  .horizontal-boxes {
-    flex-direction: column;
-  }
-
-  .col-md-5 {
-    width: 100%;
-  }
-
-  .info-card {
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-section {
-    padding: 0 15px;
-  }
-
-  .info-card {
-    padding: 20px;
-  }
-
-  .section-title {
-    font-size: 1.6rem;
-  }
-
-  .about-image {
-    width: 240px !important;
-    height: auto;
-  }
-}
-
-.info-card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  border-left: 5px solid #1c1c1c;
-}
-
-.info-card:hover {
-  transform: translateY(-6px) scale(1.01);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  background: linear-gradient(135deg, #ffffff, #f9f9f9);
-}
-
-.card-content h6 {
-  font-size: 1rem;
-  color: #1c1c1c;
-}
-
-.card-content p {
-  font-size: 0.95rem;
-  color: #444;
-}
-
-.icon-title h5 {
-  font-size: 1.1rem;
-  font-weight: 600;
 }
 
 .icon-title img {
@@ -111,20 +41,27 @@
 
 .role-box {
   display: inline-block;
-  background-color: #f5f5f5;
-  padding: 10px 20px;
-  border-radius: 12px;
+  background: linear-gradient(135deg, black,grey);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 14px;
   font-weight: bold;
-  font-size: 1.25rem;
-  max-width: 100%; 
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 .intern-description {
-  max-width: 90%; 
-  margin-top: 0.5rem;
+  max-width: 95%;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
 }
 
-
+/* Experience Card specific styling */
 .info-card.experience-card {
   background: rgba(255, 255, 255, 0.8); 
   border-radius: 20px;
@@ -135,7 +72,6 @@
   position: relative;
   transition: all 0.3s ease;
 }
-
 
 .info-card.experience-card::before {
   content: "";
@@ -157,23 +93,45 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
-.role-box {
-  display: inline-block;
-  background: linear-gradient(135deg, black,grey);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 14px;
-  font-weight: bold;
-  font-size: 1.2rem;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+@media (max-width: 992px) {
+  .horizontal-boxes {
+    flex-direction: column;
+  }
+  .col-md-5 {
+    width: 100%;
+  }
+  .info-card {
+    margin-bottom: 20px;
+  }
 }
 
-.intern-description {
-  max-width: 95%;
-  margin-top: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #333;
+@media (max-width: 768px) {
+  .about-section {
+    padding: 0 15px;
+  }
+  .info-card {
+    padding: 20px;
+  }
+  .section-title {
+    font-size: 1.6rem;
+  }
+  .about-image {
+    width: 240px !important;
+    height: auto;
+  }
 }
 
+@media (max-width: 576px) {
+  .role-box {
+    font-size: 1rem;
+    padding: 10px 16px;
+    white-space: normal;
+  }
+  .intern-description {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+  .info-card {
+    padding: 16px;
+  }
+}

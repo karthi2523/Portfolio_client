@@ -76,25 +76,29 @@ const MyNavbar = () => {
             id="offcanvas-navbar"
             aria-labelledby="offcanvas-navbar-label"
             placement="end"
+            style={{
+              backgroundColor: darkMode ? '#1e1e1e' : '#ffffff',
+              color: darkMode ? '#ffffff' : '#000000',
+            }}
           >
-            <Offcanvas.Header closeButton>
-              <Offcanvas.Title id="offcanvas-navbar-label" className="fw-bold fs-4">
+            <Offcanvas.Header closeButton className={darkMode ? 'btn-close-white' : ''}>
+              <Offcanvas.Title id="offcanvas-navbar-label" className={`fw-bold fs-4 ${darkMode ? 'text-white' : 'text-dark'}`}>
                 Menu
               </Offcanvas.Title>
             </Offcanvas.Header>
 
             <Offcanvas.Body>
               <Nav className="justify-content-center flex-grow-1 gap-3 text-center">
-                <Nav.Link href="#home" className="fs-5 fw-medium" onClick={handleClose}>
+                <Nav.Link href="#home" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
                   Home
                 </Nav.Link>
-                <Nav.Link href="#about" className="fs-5 fw-medium" onClick={handleClose}>
+                <Nav.Link href="#about" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
                   About Me
                 </Nav.Link>
-                <Nav.Link href="#services" className="fs-5 fw-medium" onClick={handleClose}>
+                <Nav.Link href="#services" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
                   Skills
                 </Nav.Link>
-                <Nav.Link href="#work" className="fs-5 fw-medium" onClick={handleClose}>
+                <Nav.Link href="#work" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
                   Projects
                 </Nav.Link>
               </Nav>
