@@ -4,20 +4,17 @@ import { Navbar, Nav, Container, Button, Offcanvas } from 'react-bootstrap';
 import { BsMoon, BsSun } from 'react-icons/bs';
 import { FiArrowUpRight } from 'react-icons/fi';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { DarkModeProvider } from './DarkModeContext';
+import { useDarkMode } from './DarkModeContext';
 import { motion, useScroll } from 'framer-motion';
+import styles from './Navbar.module.css';
 
 const MyNavbar = () => {
   const [showOffcanvas, setShowOffcanvas] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, toggleDarkMode } = useDarkMode();
   const { scrollYProgress } = useScroll();
 
   const handleClose = () => setShowOffcanvas(false);
   const handleShow = () => setShowOffcanvas(true);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
   useEffect(() => {
     const body = document.body;
@@ -50,25 +47,23 @@ const MyNavbar = () => {
           right: 0,
           height: '4px',
           background: 'linear-gradient(90deg, #ff7e5f 0%, #feb47b 100%)',
-          zIndex: 1040,
+          zIndex: 1050,
         }}
       />
       <Navbar
         expand="lg"
         variant={darkMode ? 'dark' : 'light'}
         fixed="top"
-        className={`shadow-sm py-3 ${darkMode ? 'text-white' : 'text-dark'}`}
-        style={{
-          backgroundColor: darkMode ? 'rgba(33, 37, 41, 0.85)' : 'rgba(255, 255, 255, 0.85)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-        }}
+        className={`${styles.navbarFloating}`}
       >
-        <Container fluid className="px-3 px-md-5">
-          <Navbar.Brand href="#home" className="fw-bold fs-4">
+        <Container fluid className={`${styles.navContainer} ${darkMode ? styles.navContainerDark : ''}`}>
+          <Navbar.Brand href="#home" className={styles.brand}>
             Deekshithaa
           </Navbar.Brand>
-          <Navbar.Toggle onClick={handleShow} aria-controls="offcanvas-navbar" />
+          
+          <div className="d-flex align-items-center d-lg-none">
+            <Navbar.Toggle onClick={handleShow} aria-controls="offcanvas-navbar" className="ms-2 border-0 shadow-none" />
+          </div>
 
           <Navbar.Offcanvas
             show={showOffcanvas}
@@ -76,46 +71,45 @@ const MyNavbar = () => {
             id="offcanvas-navbar"
             aria-labelledby="offcanvas-navbar-label"
             placement="end"
+            className={styles.offcanvasMenu}
             style={{
-              backgroundColor: darkMode ? '#1e1e1e' : '#ffffff',
+              backgroundColor: darkMode ? '#18181b' : '#ffffff',
               color: darkMode ? '#ffffff' : '#000000',
             }}
           >
             <Offcanvas.Header closeButton className={darkMode ? 'btn-close-white' : ''}>
-              <Offcanvas.Title id="offcanvas-navbar-label" className={`fw-bold fs-4 ${darkMode ? 'text-white' : 'text-dark'}`}>
+              <Offcanvas.Title id="offcanvas-navbar-label" className={styles.brand}>
                 Menu
               </Offcanvas.Title>
             </Offcanvas.Header>
 
             <Offcanvas.Body>
-              <Nav className="justify-content-center flex-grow-1 gap-3 text-center">
-                <Nav.Link href="#home" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
+              <Nav className="justify-content-center flex-grow-1 text-center">
+                <Nav.Link href="#home" className={`${styles.navLink} ${darkMode ? styles.navLinkDark : styles.navLinkLight}`} onClick={handleClose}>
                   Home
                 </Nav.Link>
-                <Nav.Link href="#about" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
+                <Nav.Link href="#about" className={`${styles.navLink} ${darkMode ? styles.navLinkDark : styles.navLinkLight}`} onClick={handleClose}>
                   About Me
                 </Nav.Link>
-                <Nav.Link href="#services" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
+                <Nav.Link href="#services" className={`${styles.navLink} ${darkMode ? styles.navLinkDark : styles.navLinkLight}`} onClick={handleClose}>
                   Skills
                 </Nav.Link>
-                <Nav.Link href="#work" className={`fs-5 fw-medium ${darkMode ? 'text-white' : 'text-dark'}`} onClick={handleClose}>
+                <Nav.Link href="#work" className={`${styles.navLink} ${darkMode ? styles.navLinkDark : styles.navLinkLight}`} onClick={handleClose}>
                   Projects
                 </Nav.Link>
               </Nav>
 
-              <div className="d-flex justify-content-center justify-content-lg-end align-items-center gap-3 mt-4 mt-lg-0">
+              <div className="d-flex justify-content-center justify-content-lg-end align-items-center mt-4 mt-lg-0 gap-3">
                 <Button
                   variant={darkMode ? 'light' : 'dark'}
-                  className="rounded-pill d-flex align-items-center gap-2 fs-6 px-4 py-2 fw-semibold"
+                  className={`rounded-pill d-flex align-items-center gap-2 px-4 py-2 fw-semibold border-0 ${styles.contactBtn} ${darkMode ? styles.contactBtnDark : ''}`}
                   onClick={handleContactClick}
                   style={{
-                    transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.1)'
+                    background: darkMode ? '#ffffff' : '#111827',
+                    color: darkMode ? '#111827' : '#ffffff',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-2px)' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)' }}
                 >
-                  Contact <FiArrowUpRight />
+                  Contact <FiArrowUpRight size={18} />
                 </Button>
               </div>
             </Offcanvas.Body>
